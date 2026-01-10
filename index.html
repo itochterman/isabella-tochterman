@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isabella Tochterman - Engineer & Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #1a1a1a;
+            --text: #e8e8e8;
+            --accent: #ff6b35;
+            --secondary: #4a4a4a;
+            --highlight: #f7c59f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Instrument Serif', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, var(--text) 2px, var(--text) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, var(--text) 2px, var(--text) 4px);
+            pointer-events: none;
+            animation: grain 8s steps(10) infinite;
+        }
+
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0) }
+            10% { transform: translate(-5%, -10%) }
+            30% { transform: translate(3%, -15%) }
+            50% { transform: translate(12%, 9%) }
+            70% { transform: translate(9%, 4%) }
+            90% { transform: translate(-1%, 7%) }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        .name {
+            font-family: 'Martian Mono', monospace;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            color: var(--text);
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--highlight);
+            font-style: italic;
+            margin-bottom: 2rem;
+            animation: slideInLeft 1s ease-out 0.2s backwards;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out 0.4s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .intro strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-family: 'Martian Mono', monospace;
+            font-size: 2.5rem;
+            margin: 5rem 0 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: var(--accent);
+            animation: expandWidth 0.8s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 60%; }
+        }
+
+        .projects {
+            display: grid;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        .project {
+            border-left: 3px solid var(--secondary);
+            padding-left: 2rem;
+            position: relative;
+            transition: border-color 0.3s ease;
+        }
+
+        .project:hover {
+            border-color: var(--accent);
+        }
+
+        .project::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 11px;
+            height: 11px;
+            background: var(--accent);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover::before {
+            transform: scale(1.5);
+        }
+
+        .project-title {
+            font-family: 'Martian Mono', monospace;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-family: 'Martian Mono', monospace;
+        }
+
+        .project-description {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-family: 'Martian Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .project-link:hover::before {
+            left: 0;
+        }
+
+        .project-link:hover {
+            color: var(--bg);
+        }
+
+        .skills {
+            margin-bottom: 5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 107, 53, 0.05);
+            padding: 2rem;
+            border-top: 3px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            font-family: 'Martian Mono', monospace;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .skill-category li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .contact {
+            margin: 5rem 0;
+            padding: 3rem 0;
+            border-top: 1px solid var(--secondary);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            font-family: 'Martian Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--text);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .contact-link:hover {
+            color: var(--bg);
+            background: var(--text);
+            transform: translateX(5px);
+        }
+
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--secondary);
+        }
+
+        .coming-soon {
+            display: inline-block;
+            margin-left: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--secondary);
+            color: var(--bg);
+            font-family: 'Martian Mono', monospace;
+            font-size: 0.75rem;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .project {
+                padding-left: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="name">Isabella Tochterman</h1>
+            <p class="tagline">Engineer who builds tools that actually help people</p>
+            <div class="intro">
+                I'm a software engineer with a background in <strong>computer science and psychology</strong> who creates technology that solves real problems. From housing accessibility to regulatory compliance for small businesses to making skateboarding more accessible, I build systems that bridge technical complexity with human needs. Based in San Francisco with roots in New York City and Portugal.
+            </div>
+        </header>
+
+        <section class="projects">
+            <h2 class="section-title reveal">Selected Work</h2>
+
+            <div class="project reveal">
+                <h3 class="project-title">Avocado Skate</h3>
+                <p class="project-meta">Full-Stack Development • 2024</p>
+                <p class="project-description">
+                    Built a dynamic video-based website for my skateboarding instruction business in the SF Bay Area. Designed with authentic skate culture aesthetics and implemented a sliding scale payment structure to make skateboarding accessible across all economic backgrounds. The site features responsive design and showcases lessons for all ages and skill levels.
+                </p>
+                <a href="https://avocado-skate.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a>
+            </div>
+
+            <div class="project reveal">
+                <h3 class="project-title">Citizenly</h3>
+                <p class="project-meta">Software Engineering • [Year]</p>
+                <p class="project-description">
+                    [Add description of your role and contributions at Citizenly - what did you build, what problem did it solve, what technologies did you use?]
+                </p>
+                <a href="#" class="project-link">Learn More</a>
+            </div>
+
+            <div class="project reveal">
+                <h3 class="project-title">NYC Rent Stabilized Unit Search Engine <span class="coming-soon">LINK COMING</span></h3>
+                <p class="project-meta">Full-Stack Development • NYC Housing Data</p>
+                <p class="project-description">
+                    Created a search engine to help New Yorkers find rent-stabilized apartments, addressing the city's housing affordability crisis through technology. Built search and filter functionality working with housing data to make critical information accessible to those who need it most. Directly connects technical skills to social impact.
+                </p>
+            </div>
+
+            <div class="project reveal">
+                <h3 class="project-title">Metrc API Integration</h3>
+                <p class="project-meta">Backend Engineering • Cannabis Compliance</p>
+                <p class="project-description">
+                    Developed robust API integrations for cannabis regulatory compliance and state reporting systems at Proteus, a cannabis ERP company. Specialized in handling complex state-by-state compliance requirements, ensuring small cannabis businesses can navigate regulatory frameworks efficiently and accurately.
+                </p>
+            </div>
+        </section>
+
+        <section class="skills">
+            <h2 class="section-title reveal">Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category reveal">
+                    <h3>Languages & Frameworks</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>HTML/CSS</li>
+                        <li>React</li>
+                        <li>Node.js</li>
+                    </ul>
+                </div>
+                <div class="skill-category reveal">
+                    <h3>Specializations</h3>
+                    <ul>
+                        <li>API Integration</li>
+                        <li>Full-Stack Development</li>
+                        <li>Compliance Systems</li>
+                        <li>Data Processing</li>
+                        <li>Web Development</li>
+                    </ul>
+                </div>
+                <div class="skill-category reveal">
+                    <h3>Beyond Code</h3>
+                    <ul>
+                        <li>Human-Centered Design</li>
+                        <li>User Experience</li>
+                        <li>Problem Solving</li>
+                        <li>Research & Analysis</li>
+                        <li>Communication</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2 class="section-title reveal">Get In Touch</h2>
+            <div class="contact-links">
+                <a href="https://github.com/itochterman" class="contact-link" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/isabella-tochterman-486739132/" class="contact-link" target="_blank">LinkedIn</a>
+                <a href="mailto:isabellatochterman@gmail.com" class="contact-link">Email</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Isabella Tochterman. Built with intention.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Call once on load
+    </script>
+</body>
+</html>
