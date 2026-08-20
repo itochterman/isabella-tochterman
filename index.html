@@ -9,11 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #1a1a1a;
-            --text: #e8e8e8;
-            --accent: #ff6b35;
-            --secondary: #4a4a4a;
-            --highlight: #f7c59f;
+            --bg: #f7f4ee;
+            --text: #252321;
+            --accent: #c84f24;
+            --secondary: #716b63;
+            --highlight: #91401f;
         }
 
         * {
@@ -66,6 +66,102 @@
             position: relative;
         }
 
+        .header-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 340px;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .profile-photo {
+            width: 300px;
+            height: 385px;
+            object-fit: cover;
+            object-position: center;
+            filter: saturate(0.9);
+            animation: fadeIn 1s ease-out 0.2s backwards;
+        }
+
+        .profile-photo-wrap {
+            position: relative;
+            width: 300px;
+            height: 385px;
+            justify-self: center;
+            align-self: end;
+            overflow: visible;
+            margin-top: 8.5rem;
+            margin-left: auto;
+            margin-right: auto;
+            background: transparent;
+            animation: fadeIn 1s ease-out 0.2s backwards;
+        }
+
+        .profile-photo-wrap::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 138px;
+            height: 138px;
+            background: var(--accent);
+            z-index: 0;
+        }
+
+        .profile-photo-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(35deg, rgba(37, 35, 33, 0.36), transparent 42%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .profile-photo {
+            position: relative;
+            z-index: 3;
+            display: block;
+        }
+
+        .photo-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 0;
+        }
+
+        .legal-mark {
+            width: 170px;
+            opacity: 0.95;
+            transform: rotate(2deg);
+            margin-left: 0.9rem;
+            margin-top: 0.1rem;
+        }
+
+        .legal-mark img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .profile-caption {
+            margin-top: 0.85rem;
+            text-align: left;
+            color: var(--accent);
+            font-family: 'Martian Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transform: rotate(-3deg);
+            display: inline-block;
+            max-width: 220px;
+        }
+
+        .profile-caption::after {
+            content: '.';
+            color: var(--accent);
+        }
+
+        
         .name {
             font-family: 'Martian Mono', monospace;
             font-size: clamp(2.5rem, 8vw, 5rem);
@@ -119,6 +215,13 @@
             margin: 5rem 0 3rem;
             position: relative;
             display: inline-block;
+        }
+
+        .section-header-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .section-title::after {
@@ -236,7 +339,7 @@
         }
 
         .skill-category {
-            background: rgba(255, 107, 53, 0.05);
+            background: rgba(200, 79, 36, 0.08);
             padding: 2rem;
             border-top: 3px solid var(--accent);
             transition: transform 0.3s ease;
@@ -324,6 +427,22 @@
                 font-size: 2rem;
             }
 
+            .header-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .profile-photo {
+                display: block;
+                width: min(100%, 300px);
+                height: 385px;
+            }
+
+            .profile-photo-wrap {
+                width: min(100%, 300px);
+                height: 385px;
+            }
+
             .project {
                 padding-left: 1.5rem;
             }
@@ -353,15 +472,30 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="name">Isabella Tochterman</h1>
-            <p class="tagline">Engineer who builds tools that actually help people</p>
-            <div class="intro">
-                I'm a software engineer, skateboarder and fellow peer with a background in <strong>computer science and psychology</strong>. I create technology that solves real problems. From housing accessibility to regulatory compliance for small businesses to making skateboarding more accessible, I build systems that bridge technical complexity with human needs. Based in San Francisco with roots in New York City and Portugal.
+            <div class="header-layout">
+                <div>
+                    <h1 class="name">Isabella Tochterman</h1>
+                    <p class="tagline">Engineer who builds tools that actually help people</p>
+                    <div class="intro">
+                        I'm a software engineer, skateboarder and fellow peer with a background in <strong>computer science and psychology</strong>. I create technology that solves real problems. From housing accessibility to regulatory compliance for small businesses to making skateboarding more accessible, I build systems that bridge technical complexity with human needs. Based in San Francisco with roots in New York City and Portugal.
+                    </div>
+                </div>
+                <div class="photo-stack">
+                    <div class="profile-photo-wrap">
+                        <img class="profile-photo" src="project.jpeg" alt="Isabella Tochterman outside a building">
+                    </div>
+                    <div class="profile-caption">Connections RESET center</div>
+                </div>
             </div>
         </header>
 
         <section class="projects">
-            <h2 class="section-title reveal">Peer Support & Recovery</h2>
+            <div class="section-header-row">
+                <h2 class="section-title reveal">Peer Support & Recovery</h2>
+                <div class="legal-mark reveal">
+                    <img src="legal.svg" alt="Legal gavel graphic">
+                </div>
+            </div>
 
             <div class="project reveal">
                 <h3 class="project-title">Peer Support & Recovery Advocacy</h3>
