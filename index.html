@@ -287,6 +287,33 @@
             font-family: 'Martian Mono', monospace;
         }
 
+        .company-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+        }
+
+        .company-link:hover {
+            opacity: 0.8;
+        }
+
+        .company-link.connections {
+            color: #0d6a5f;
+        }
+
+        .company-link.uhg {
+            color: #1d4f91;
+        }
+
+        .company-link.citizenly {
+            color: #6c3d16;
+        }
+
+        .company-link.proteus {
+            color: #3e6a57;
+        }
+
         .project-description {
             font-size: 1.05rem;
             line-height: 1.8;
@@ -499,11 +526,11 @@
 
             <div class="project reveal">
                 <h3 class="project-title">Peer Support & Recovery Advocacy</h3>
-                <p class="project-meta">Connections • Current</p>
+                <p class="project-meta"><a class="company-link connections" href="https://connectionshs.com/san-francisco" target="_blank" rel="noopener noreferrer">Connections</a> • Current</p>
                 <p class="project-description">
                     I manage patients during acute recovery at Connections, a humble, nurturing sobering center providing individuals with an alternative to jail. I am honored to get the opportunity to connect with people in their most vulnerable moments. 
                 </p>
-                <p class="project-meta">United Health Group  • 2021 – 2024</p>
+                <p class="project-meta"><a class="company-link uhg" href="https://www.uhg.com/" target="_blank" rel="noopener noreferrer">United Health Group</a>  • 2021 – 2024</p>
                 <p class="project-description">
                     My soul calling is helping people navigate addiction, recovery, and foundational resources. For over 3 years at United Health Group, I worked directly with individuals in recovery, building trust and providing peer support that meets people where they are. Now at Connections, I continue this work, advocating for accessible pathways to recovery and ensuring people have the foundational resources they need to thrive. This work has shaped how I build technology—always centering human dignity and real impact.
                 </p>
@@ -515,7 +542,7 @@
 
             <div class="project reveal">
                 <h3 class="project-title">Citizenly</h3>
-                <p class="project-meta">Software Engineering • 2024</p>
+                <p class="project-meta"><a class="company-link citizenly" href="https://www.citizenly.co/" target="_blank" rel="noopener noreferrer">Citizenly</a> • 2024</p>
                 <p class="project-description">
                     Worked as a founding engineer for Citizenly, a startup focused on civic engagement and community-driven solutions. Contributed to the development of a platform that empowers citizens to participate in local governance and decision-making processes. Implemented features that facilitate communication between residents and local officials, enhancing transparency and accountability.
                 </p>
@@ -532,7 +559,7 @@
 
             <div class="project reveal">
                 <h3 class="project-title">Metrc API Integration</h3>
-                <p class="project-meta">Backend Engineering • 2024</p>
+                <p class="project-meta"><a class="company-link proteus" href="https://proteus.technology/" target="_blank" rel="noopener noreferrer">Proteus</a> • 2024</p>
                 <p class="project-description">
                     Developed robust API integrations for cannabis regulatory compliance and state reporting systems at Proteus, a cannabis ERP company. Specialized in handling complex state-by-state compliance requirements, ensuring small cannabis businesses can navigate regulatory frameworks efficiently and accurately.
                 </p>
